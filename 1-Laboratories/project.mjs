@@ -35,3 +35,62 @@ handler vectors.
     the elements indexes.
 
 */
+
+function Meme(image, ...captions)
+{
+    this.image = image; // for now I'll just insert either a dummy name or an int
+    this.captions = captions;
+
+    this.GetPoints = (cap) =>
+    {
+        index = this.captions.indexOf(cap);
+        if (index == -1)
+            return 0;
+        return 3-index;
+    }
+}
+
+function StackOfCap(...captions)
+{
+    this.captions = captions;
+    for(i = 0; i<this.captions.length; i++)
+    {
+        this.capAvailable.push(0);
+    }
+    this.getAvail = (index) =>
+    {
+        this.capAvailable[index];
+    }
+    this.SetCaption = (index) =>
+    {
+        this.capAvailable[index] = 1;
+    }
+
+    this.ResetCaption = (index) =>
+    {
+        this.capAvailable[index] = 0;
+    }
+
+    this.giveHand = () =>
+    {
+        let index = 0;
+        for(i = 0; i < 7; i++)
+        { 
+            do
+            {
+                index = Math.round(this.captions.length*Math.random);
+                if(!this.getAvail(index))
+                    index = -1;
+            }while(index == -1);
+            hand.push(index);
+            this.SetCaption(index);
+        }
+        return hand;
+    }
+
+    this.ResetHand = (hand) =>
+    {
+        for(index of hand)
+            this.ResetCaption(index);
+    }
+}
