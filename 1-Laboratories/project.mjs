@@ -93,4 +93,59 @@ function StackOfCap(...captions)
         for(index of hand)
             this.ResetCaption(index);
     }
+
+    this.selectCaption = (hand) =>
+    {
+        //Still need for input functions
+    }
+
+
+}
+
+//made by copilot good fucking lord, needed some fixes tho
+function GameHandler(memes, captions, user)
+{
+    this.memes = memes;
+    this.captions = captions;
+    this.user = user;
+    this.turn = 0;
+    this.points = 0;
+    this.history = [];
+
+    this.StartGame = () =>
+    {
+        this.ManageTurn();
+    }
+
+    this.UpdateTurn = () =>
+    {
+        this.turn++;
+        if(this.user == 1 && this.turn == 3)
+            return 1;
+        if(this.user == 2 && this.turn == 1)
+            return 1;
+        this.ManageTurn();
+    }
+
+    this.ManageTurn = () =>
+    {
+        let meme = this.memes[Math.round(this.memes.length*Math.random)];
+        let points = meme.GetPoints(this.captions[hand[selected]]);
+        let hand = this.captions.giveHand();
+        let selected = this.captions.selectCaption(hand);
+        this.points += points;
+        this.history.push([meme, hand, selected]);
+        this.captions.ResetHand(hand);
+        this.UpdateTurn();
+    }
+
+    this.GetPoints = () =>
+    {
+        return this.points;
+    }
+
+    this.showTurnHistory = (index) =>
+    {
+        //output of turn, cards obtained and selected and points obtained
+    }
 }
