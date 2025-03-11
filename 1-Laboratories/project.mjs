@@ -121,10 +121,17 @@ function GameHandler(memes, captions, user)
     {
         this.turn++;
         if(this.user == 1 && this.turn == 3)
+        {
+            this.endGame();
             return 1;
+        }
         if(this.user == 2 && this.turn == 1)
+        {
+            this.endGame();
             return 1;
+        }
         this.ManageTurn();
+        return 0;
     }
 
     this.ManageTurn = () =>
@@ -142,6 +149,11 @@ function GameHandler(memes, captions, user)
     this.GetPoints = () =>
     {
         return this.points;
+    }
+
+    this.endGame = () =>
+    {
+        this.date = 0;
     }
 
     this.showTurnHistory = (index) =>
