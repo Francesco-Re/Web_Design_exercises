@@ -102,6 +102,25 @@ function StackOfCap(...captions)
 
 }
 
+function history(meme, hand, selected)
+{
+    this.meme = meme;
+    this.hand = hand;
+    this.selected = selected;
+    this.getHand = () =>
+    {
+        return this.hand;
+    }
+    this.getMeme = () =>
+    {
+        return this.meme;
+    }
+    this.getSelected = () =>
+    {
+        return this.selected;
+    }
+    }
+
 //made by copilot good fucking lord, needed some fixes tho
 function GameHandler(memes, captions, user)
 {
@@ -141,7 +160,7 @@ function GameHandler(memes, captions, user)
         let hand = this.captions.giveHand();
         let selected = this.captions.selectCaption(hand);
         this.points += points;
-        this.history.push([meme, hand, selected]);
+        this.history.push(new history(meme, selected, selected));
         this.captions.ResetHand(hand);
         this.UpdateTurn();
     }
@@ -158,6 +177,6 @@ function GameHandler(memes, captions, user)
 
     this.showTurnHistory = (index) =>
     {
-        //output of turn, cards obtained and selected and points obtained
+        return this.history[index];
     }
 }
