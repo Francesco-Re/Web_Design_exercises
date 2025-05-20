@@ -2,13 +2,13 @@
 
 function convertionToCapitals(names)
 {
-    let nameList = names.split(",");
+    let nameList = names.split(", ");
     let result = [];
-    for ( fullName in nameList )
+    for ( let fullName of nameList )
     {
         let words = fullName.split(" ");
         let r = "";
-        for ( word in words )
+        for ( let word of words )
         {
             r = r + word[0];
         }
@@ -20,3 +20,4 @@ function convertionToCapitals(names)
 
 let string = "Luigi De Russis, Francesca Russo, Fulvio Corno, Luca Scibetta, Enrico Masala, Antonio Servetti";
 let result = convertionToCapitals(string);
+console.log(result);
